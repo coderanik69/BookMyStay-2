@@ -8,6 +8,7 @@ public class BookMyStayApp {
     static Set<String> allocatedRooms = new HashSet<>();
     static Map<String, List<String>> addOnServices = new HashMap<>();
     static List<String> bookingHistory = new ArrayList<>();
+    static Stack<String> cancellationStack = new Stack<>();
 
     public static void main(String[] args) {
         uc1_ApplicationStart();
@@ -19,6 +20,7 @@ public class BookMyStayApp {
         uc7_AddOnServices();
         uc8_BookingHistory();
         uc9_ErrorHandling();
+        uc10_CancellationRollback();
     }
 
     public static void uc1_ApplicationStart() {
@@ -182,6 +184,18 @@ public class BookMyStayApp {
             System.out.println("Error : " + e.getMessage());
         }
 
+        System.out.println();
+    }
+
+    public static void uc10_CancellationRollback() {
+        System.out.println("UC10 : Cancellation");
+
+        cancellationStack.push("Single-1");
+
+        String releasedRoom = cancellationStack.pop();
+        inventory.put("Single", inventory.get("Single") + 1);
+
+        System.out.println("Room Cancelled : " + releasedRoom);
         System.out.println();
     }
 }
