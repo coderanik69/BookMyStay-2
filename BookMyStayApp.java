@@ -3,9 +3,12 @@ import java.io.*;
 
 public class BookMyStayApp {
 
+    static HashMap<String, Integer> inventory = new HashMap<>();
+
     public static void main(String[] args) {
         uc1_ApplicationStart();
         uc2_RoomInitialization();
+        uc3_CentralizedInventory();
     }
 
     public static void uc1_ApplicationStart() {
@@ -68,6 +71,17 @@ public class BookMyStayApp {
         r2.display();
         r3.display();
 
+        System.out.println();
+    }
+
+    public static void uc3_CentralizedInventory() {
+        System.out.println("UC3 : Inventory Setup");
+
+        inventory.put("Single", 5);
+        inventory.put("Double", 3);
+        inventory.put("Suite", 2);
+
+        System.out.println("Inventory : " + inventory);
         System.out.println();
     }
 }
