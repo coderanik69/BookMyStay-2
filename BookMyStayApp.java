@@ -22,6 +22,7 @@ public class BookMyStayApp {
         uc9_ErrorHandling();
         uc10_CancellationRollback();
         uc11_ConcurrentBooking();
+        uc12_DataPersistence();
     }
 
     public static void uc1_ApplicationStart() {
@@ -223,6 +224,22 @@ public class BookMyStayApp {
             t2.join();
         } catch (Exception e) {
             // No-op for simulation.
+        }
+
+        System.out.println();
+    }
+
+    public static void uc12_DataPersistence() {
+        System.out.println("UC12 : Data Persistence");
+
+        try {
+            FileWriter writer = new FileWriter("inventory.txt");
+            writer.write(inventory.toString());
+            writer.close();
+
+            System.out.println("Inventory Saved to File");
+        } catch (Exception e) {
+            System.out.println("Persistence Error");
         }
 
         System.out.println();
