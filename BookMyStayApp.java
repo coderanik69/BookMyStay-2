@@ -4,12 +4,14 @@ import java.io.*;
 public class BookMyStayApp {
 
     static HashMap<String, Integer> inventory = new HashMap<>();
+    static Queue<String> bookingQueue = new LinkedList<>();
 
     public static void main(String[] args) {
         uc1_ApplicationStart();
         uc2_RoomInitialization();
         uc3_CentralizedInventory();
         uc4_RoomSearch();
+        uc5_BookingRequestQueue();
     }
 
     public static void uc1_ApplicationStart() {
@@ -97,6 +99,17 @@ public class BookMyStayApp {
             }
         }
 
+        System.out.println();
+    }
+
+    public static void uc5_BookingRequestQueue() {
+        System.out.println("UC5 : Booking Requests");
+
+        bookingQueue.add("Guest1 - Single");
+        bookingQueue.add("Guest2 - Double");
+        bookingQueue.add("Guest3 - Suite");
+
+        System.out.println("Booking Queue : " + bookingQueue);
         System.out.println();
     }
 }
