@@ -9,6 +9,7 @@ public class BookMyStayApp {
         uc1_ApplicationStart();
         uc2_RoomInitialization();
         uc3_CentralizedInventory();
+        uc4_RoomSearch();
     }
 
     public static void uc1_ApplicationStart() {
@@ -82,6 +83,20 @@ public class BookMyStayApp {
         inventory.put("Suite", 2);
 
         System.out.println("Inventory : " + inventory);
+        System.out.println();
+    }
+
+    public static void uc4_RoomSearch() {
+        System.out.println("UC4 : Room Search");
+
+        for (String room : inventory.keySet()) {
+            int count = inventory.get(room);
+
+            if (count > 0) {
+                System.out.println(room + " Available : " + count);
+            }
+        }
+
         System.out.println();
     }
 }
