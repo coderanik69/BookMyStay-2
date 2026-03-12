@@ -7,6 +7,7 @@ public class BookMyStayApp {
     static Queue<String> bookingQueue = new LinkedList<>();
     static Set<String> allocatedRooms = new HashSet<>();
     static Map<String, List<String>> addOnServices = new HashMap<>();
+    static List<String> bookingHistory = new ArrayList<>();
 
     public static void main(String[] args) {
         uc1_ApplicationStart();
@@ -16,6 +17,7 @@ public class BookMyStayApp {
         uc5_BookingRequestQueue();
         uc6_RoomAllocation();
         uc7_AddOnServices();
+        uc8_BookingHistory();
     }
 
     public static void uc1_ApplicationStart() {
@@ -152,6 +154,19 @@ public class BookMyStayApp {
         addOnServices.put("Single-1", services);
 
         System.out.println(addOnServices);
+        System.out.println();
+    }
+
+    public static void uc8_BookingHistory() {
+        System.out.println("UC8 : Booking History");
+
+        bookingHistory.add("Guest1 - Single-1");
+        bookingHistory.add("Guest2 - Double-1");
+
+        for (String b : bookingHistory) {
+            System.out.println(b);
+        }
+
         System.out.println();
     }
 }
