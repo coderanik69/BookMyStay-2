@@ -5,6 +5,7 @@ public class BookMyStayApp {
 
     static HashMap<String, Integer> inventory = new HashMap<>();
     static Queue<String> bookingQueue = new LinkedList<>();
+    static Set<String> allocatedRooms = new HashSet<>();
 
     public static void main(String[] args) {
         uc1_ApplicationStart();
@@ -12,6 +13,7 @@ public class BookMyStayApp {
         uc3_CentralizedInventory();
         uc4_RoomSearch();
         uc5_BookingRequestQueue();
+        uc6_RoomAllocation();
     }
 
     public static void uc1_ApplicationStart() {
@@ -110,6 +112,31 @@ public class BookMyStayApp {
         bookingQueue.add("Guest3 - Suite");
 
         System.out.println("Booking Queue : " + bookingQueue);
+        System.out.println();
+    }
+
+    public static void uc6_RoomAllocation() {
+        System.out.println("UC6 : Room Allocation");
+
+        while (!bookingQueue.isEmpty()) {
+            String request = bookingQueue.poll();
+
+            String[] parts = request.split(" - ");
+            String guest = parts[0];
+            String type = parts[1];
+
+            if (inventory.get(type) > 0) {
+                String roomId = type + "-" + (allocatedRooms.size() + 1);
+
+                allocatedRooms.add(roomId);
+                inventory.put(type, inventory.get(type) - 1);
+
+                System.out.println("Allocated " + roomId + " to " + guest);
+            } else {
+                System.out.println("No " + type + " rooms available for " + guest);
+            }
+        }
+
         System.out.println();
     }
 }
