@@ -21,6 +21,7 @@ public class BookMyStayApp {
         uc8_BookingHistory();
         uc9_ErrorHandling();
         uc10_CancellationRollback();
+        uc11_ConcurrentBooking();
     }
 
     public static void uc1_ApplicationStart() {
@@ -196,6 +197,34 @@ public class BookMyStayApp {
         inventory.put("Single", inventory.get("Single") + 1);
 
         System.out.println("Room Cancelled : " + releasedRoom);
+        System.out.println();
+    }
+
+    public static void uc11_ConcurrentBooking() {
+        System.out.println("UC11 : Concurrent Booking Simulation");
+
+        Runnable task = () -> {
+            synchronized (inventory) {
+                if (inventory.get("Single") > 0) {
+                    inventory.put("Single", inventory.get("Single") - 1);
+                    System.out.println(Thread.currentThread().getName() + " booked Single Room");
+                }
+            }
+        };
+
+        Thread t1 = new Thread(task);
+        Thread t2 = new Thread(task);
+
+        t1.start();
+        t2.start();
+
+        try {
+            t1.join();
+            t2.join();
+        } catch (Exception e) {
+            // No-op for simulation.
+        }
+
         System.out.println();
     }
 }
