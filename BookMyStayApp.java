@@ -18,6 +18,7 @@ public class BookMyStayApp {
         uc6_RoomAllocation();
         uc7_AddOnServices();
         uc8_BookingHistory();
+        uc9_ErrorHandling();
     }
 
     public static void uc1_ApplicationStart() {
@@ -165,6 +166,20 @@ public class BookMyStayApp {
 
         for (String b : bookingHistory) {
             System.out.println(b);
+        }
+
+        System.out.println();
+    }
+
+    public static void uc9_ErrorHandling() {
+        System.out.println("UC9 : Error Handling");
+
+        try {
+            if (!inventory.containsKey("Luxury")) {
+                throw new Exception("Invalid Room Type");
+            }
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
         }
 
         System.out.println();
